@@ -1,0 +1,32 @@
+.nav {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navList a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.navList a:hover {
+  text-decoration: underline;
+}
+
+.active {
+  color: #0056b3;
+  font-weight: bold;
+}
+
+.main {
+  padding: 2rem;
+}

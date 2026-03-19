@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Card } from "../types/card";
-import { saveCard } from "../utils/storage";
+import { getCards, saveCards } from "../utils/storage";
 
 const AddWordPage: React.FC = () => {
   const [word, setWord] = useState("");
@@ -55,7 +55,13 @@ const AddWordPage: React.FC = () => {
     };
 
     try {
-      saveCard(newCard);
+      // Получаем существующие карточки
+      const existingCards = getCards();
+      // Добавляем новую карточку
+      const updatedCards = [...existingCards, newCard];
+      // Сохраняем обновленный массив
+      saveCards(updatedCards);
+
       showNotification("success", "Карточка успешно добавлена!");
       resetForm();
     } catch (error) {

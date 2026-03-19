@@ -1,6 +1,1 @@
-export interface Card {
-  id: string;
-  word: string;
-  translation: string;
-  example?: string;
-}
+export type { Card } from './card';

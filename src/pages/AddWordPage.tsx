@@ -44,6 +44,16 @@ const AddWordPage: React.FC = () => {
       return;
     }
 
+    const existingCards = getCards();
+    const wordLower = word.trim().toLowerCase();
+    const isDuplicate = existingCards.some(
+      card => card.word.toLowerCase() === wordLower
+    );
+    if (isDuplicate) {
+      showNotification("error", "Такое слово уже существует в коллекции");
+      return;
+    }
+
     const newCard: Card = {
       id: Date.now().toString(),
       word: word.trim(),
@@ -55,13 +65,8 @@ const AddWordPage: React.FC = () => {
     };
 
     try {
-      // Получаем существующие карточки
-      const existingCards = getCards();
-      // Добавляем новую карточку
       const updatedCards = [...existingCards, newCard];
-      // Сохраняем обновленный массив
       saveCards(updatedCards);
-
       showNotification("success", "Карточка успешно добавлена!");
       resetForm();
     } catch (error) {
